@@ -1,0 +1,144 @@
+	html,body{
+		width: 100%;
+		height: 100%;
+	}
+	.content{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items:center;
+	}
+	#all{
+		width: 100%;
+		height: 100%;
+		background-color:rgba(0,0,0,0.4); 
+       	display: flex;
+       	justify-content: center;
+       	align-items: center;
+        position: fixed ;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+    	z-index: 2;
+    	display: none;
+	} 
+	/*=============头部==========*/
+	header{
+		width: 100%;
+		height: 0.9rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	    font-size: 0.3rem;
+	    background: #FF5857;
+	    color: #FFF;
+	    position: relative;
+	    font-family: "微软雅黑";
+	
+	} 
+	/*返回上一层符号*/
+	.returns{
+		position: absolute;
+		width: 0.8rem;
+		height: 100%;
+		top: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.returns span{
+		display:block;
+		border-left: 0.03rem solid #FFFFFF;
+		border-bottom: 0.03rem solid #FFFFFF;
+		width: .22rem; 
+		height: .22rem;
+		transform: rotate(45deg);
+	}
+	header>span{
+		top: 45%;
+		margin-top: -0.11rem;
+		display:block;
+	    position: absolute;
+	    font-size: .26rem;
+	    right: 0.3rem;
+	}
+	.main{
+		width: 90%;
+	}
+	.main .title{
+		width: 100%;
+		height: 0.8rem;
+		border-bottom: 2px solid #eee;
+	}
+	.main .title input{
+		width: 100%;
+		height: 100%;
+		border: none;
+		outline: none;
+		font: 0.25rem "微软雅黑" ;
+		color: #333;
+	}
+	.notice_main{
+		width: 100%;
+		margin-top: 0.2rem;
+		overflow: hidden;
+	}
+	.notice_main textarea{
+		width: 100%;
+		min-height: 5rem;
+		display: block;
+		border: none;
+		font: 0.2rem "微软雅黑";
+		color: #333;
+	}
+	/*--------消息弹框 ------*/
+	.banner{
+		width: 100%;
+		height: 2.3rem;
+		position: fixed ;
+		margin: 70% 0%;
+	}
+	.build{
+		width: 100%;
+		height: 2.3rem;
+		display: flex;
+		justify-content: center;
+	}
+	.build-a{
+		width: 80%;
+		height: 100%;
+		border-radius:.15rem ;
+		border: solid#808080 1px;
+		background: #FFFFFF;
+		font-size: .25rem;
+	}
+	.build-a li{
+		display: flex;
+		justify-content: space-around;				
+	}
+	.build-a p{
+		font-size: .28rem;
+		display: flex;
+		justify-content: center;
+		line-height: 1.2rem;
+	}
+	.build a{
+		width: 1.2rem;
+		height: .5rem;
+		border-radius: .15rem;
+		background: #FF5857;
+		color: #FFFFFF;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.build span{
+		width: 1.2rem;
+		height: .5rem;
+		border-radius: .15rem;
+		border: solid #333333 1px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}

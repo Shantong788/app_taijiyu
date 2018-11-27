@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>入池设置</title>
+	<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/set-up.css"/>
+		<script src="../js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+</head>
+	<body>
+		<!--头部上半部分填充-->
+		<div class="header_up"></div>
+		<div id="header">
+			<a class="returns"><span></span></a>
+			<div class="edit">入池设置</div>
+			<div class="save">修改</div>
+		</div>
+		<!--设置内容-->
+		<div id="all">
+			<div class="kong"></div>
+			<div class="comment">
+				<div class="group ">
+					<span>允许任何人入池</span>
+					<li class="pic"><img class="aaa" src="../img/对号.png"/></li>
+					<input type="hidden" name="" class="setting" value="0" />
+				</div>
+			</div>
+			<div class="comment">
+				<div class="group ">
+					<span>需要身份验证</span>
+					<li class="pic"><img class="aaa" src="../img/对号.png"/></li>
+					<input type="hidden" name="" class="setting" value="1" />
+				</div>
+			</div>
+			<div class="comment">
+				<div class="group sun">
+					<span>付费入池</span>					
+					<li class="pic"><a id="links"></a>渔食<img class="aaa" src="../img/对号.png"/></li>
+					<input type="hidden" name="" class="setting" value="2" />
+				</div>
+			</div>
+			<div class="comment">
+				<div class="group">
+					<span>不允许任何人入池</span>
+					<li class="pic"><img class="aaa" src="../img/对号.png"/></li>
+					<input type="hidden" name="" class="setting" value="3" />
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+				var i_cookies= localStorage.cookies;
+				var i_fish_id = localStorage.fish_id;
+				var i_groupId = localStorage.groupId;
+				var i_type = localStorage.type;
+				var i_per_id = localStorage.per_id;
+				
+			} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+				var i_cookies= sessionStorage.cookies;
+				var i_fish_id = sessionStorage.fish_id;
+				var i_groupId = sessionStorage.groupId;
+				var i_type = sessionStorage.type;
+				var i_per_id = sessionStorage.per_id;
+			}
+			
+			//获取渔群信息
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+				var i_num = localStorage.num;
+			} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+				var i_num = sessionStorage.num;
+			};
+			var sets;
+			//判断上次选择
+			$.ajax({
+				type:"GET",
+				url: "http://47.92.96.194:8000/community/info/"+i_fish_id,
+				beforeSend: function(res){
+					document.cookie = i_cookies+";path=/";
+				},
+				xhrFields: {
+		         	withCredentials: true
+		       	},
+		       	crossDomain: true,
+				dataType: 'json',
+				success: function(data) {
+					var data = data.data;
+					if (i_num != undefined) {
+						$('#links').html(i_num);
+						$('#links').parents('.pic').css({"display":"flex"});
+						sets = $('#links').parent().siblings('.setting').val();
+						console.log(sets);
+						$('#links').parent().parent().siblings().children('.group').children('.pic').hide();
+					}else{
+						if (data.setting == null|| data.setting == 0) {
+							$('.pic').eq(0).css({"display":"flex"});
+							sets = $('.pic').eq(0).siblings('.setting').val();
+						}else if (data.setting == 2) {
+							$('.pic').eq(2).css({"display":"flex"});
+							$('#links').html(data.account);
+						}else{
+							$('.pic').eq(data.setting).css({"display":"flex"});
+						}
+					}
+				},
+				error: function(xhr, error, ex) {
+					console.log("网络有问题！！！");
+				}
+			});
+			$('#all').on('click','.comment',function(){
+				$(this).children('.group').children('.pic').css({"display":"flex"});
+				sets = $(this).children('.group').children('.setting').val();
+				console.log(sets);
+				$(this).siblings().children('.group').children('.pic').hide();
+			});
+			function keep(communityId,cookies,setting){
+				var Otxt = $('#links').html();
+				if (setting != 2) {
+					Otxt = 0;
+				};
+				$.ajax({
+					type:"POST",
+					url: "http://47.92.96.194:8000/community/update/set",
+					data:{
+						'communityId':communityId,
+						'setting':setting,
+						'account':Otxt
+					},
+					beforeSend: function(res){
+						document.cookie = cookies+";path=/";
+					},
+					xhrFields: {
+			         	withCredentials: true
+			       	},
+			       	crossDomain: true,
+					dataType: 'json',
+					success: function(data){
+						var data = data.data;
+						if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+							localStorage.removeItem("num");
+						} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+							sessionStorage.removeItem("num");
+						};
+//						window.location.href = "title.html";
+					},
+					error: function(xhr, error, ex) {
+						console.log("网络有问题！！！");
+					}
+				});
+			};
+			$('.save').on('click',function(){
+				keep(i_fish_id,i_cookies,sets);
+			});
+//			跳转设置渔食数量
+			$('.sun').click(function(){
+				window.location.href = 'pay.html';
+			})
+//			返回资料页
+			$('.returns').click(function(){
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					localStorage.removeItem("num");
+				} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+					sessionStorage.removeItem("num");
+				};
+				history.go(-1);
+			})
+			
+		</script>
+	</body>
+</html>

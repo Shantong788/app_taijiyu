@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>投票</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/vote.css"/>
+		<script src="../js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="content">
+			<div class="header_up"></div>
+			<header>
+				<div class="returns"></div>
+				<p>投票</p>
+				<div class="save">发布</div>
+			</header>
+			<div class="main">
+				<div class="write">
+					<span class="write-a">文字投票</span>
+					<span class="write-b">图片投票</span>
+				</div>
+				<!-------文字投票------>
+				<div id="first">
+					<ul>
+						<li><img src="../img/ic_vote_statistic.png"/></li> 
+						<input type="text" class="txt title" maxlength="18" value="" placeholder="投票标题(最多18个字)" maxlength="18"/>
+						<span class="imgs"></span>
+					</ul>
+					<div class="border"></div>
+					<span class="vote_s">
+						<ul>
+							<li><img src="../img/ic_target.png"/></li>
+							<input type="text" class="txt con" maxlength="10" value="" placeholder="投票选项(最多10个字)" maxlength="10"/>
+							<span class="imgs"><img src="../img/差号.png"/ class="img-a"></span>
+						</ul>
+						<ul>
+							<li><img src="../img/ic_target.png"/></li>
+							<input type="text" class="txt con" maxlength="10" value="" placeholder="投票选项(最多10个字)" maxlength="10"/>
+							<span class="imgs"><img src="../img/差号.png" class="img-a"/></span>
+						</ul>
+					</span>
+					<ul class="added">
+						<span>新增选项</span>
+					</ul>
+					<div class="border"></div>
+					<div class="details">
+						<ul>
+							<b>详情描述</b>
+							<textarea class="tarea" placeholder="填写详情，让更多人参与投票(最多50字)&非必填" rows="" cols=""></textarea>
+						</ul>
+					</div>
+				</div>
+				<!-----图片投票------>
+				<!--<div id="picture">
+					<ul class="pic-a">
+						<li><img src="../img/ic_vote_statistic.png"/></li> 
+						<input type="text" class="txt" value="" placeholder="投票标题(最多18个字)" maxlength="18"/>
+					</ul>
+					<div class="border"></div>
+					<ul>
+
+					</ul>
+					<ul class="pic-a">
+						<span>新增选项</span>
+					</ul>
+					<div class="border"></div>
+					<div class="details">
+						<ul>
+							<b>详情描述</b>
+							<textarea class="tarea" placeholder="&nbsp;&nbsp;填写详情，让更多人参与投票(最多50字)&非必填" rows="" cols=""></textarea>
+						</ul>
+					</div>
+				</div>
+			</div>-->
+	</body>
+	<script src="../js/vote.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('.returns').click(function(){
+			window.location.href= 'vote-list.html';
+		})
+		//			------输入出现减号------
+				$('.txt').on('input propertychange', function(){
+					var txt = $('.txt').val();
+					if (txt != '') {
+						$('.img-a').css({'display':'flex'})
+					}
+				})
+				$('.img-a').click(function(){
+					var txt = $('.txt').val();
+					if (txt != '') {
+						$('.txt').val('');
+						$('.img').css({'display':'none'})
+					}
+				})
+		//		$('.txt').bind('input propertychange', function() { 
+		//			var txt = $('.txt').val();
+		//			if (txt != '') {
+		//				$('.img').css({'display':'block'})
+		//			}
+		//		});
+//		----文字投票-----
+//		$('.write-a').on('click',function(){
+//			$('.write-a').css({"background":"#ff5857","color":"#fff","border":".8px solid #ff5857"})
+//			$(".write-b").css({"background":"#fff", "color":"#ff5857","border":".8px solid #ff5857"});
+//			$("#first").css({"display":"flex"});
+//			$("#picture").css({"display":"none"});
+//		})
+////		-----图片投票------
+//		$('.write-b').on('click',function(){
+//			$('.write-b').css({"background":"#ff5857","color":"#fff","border":".8px solid #ff5857"})
+//				$(".write-a").css({"background":"#fff", "color":"#ff5857","border":".8px solid #ff5857"});
+//			$("#first").css({"display":"none"});
+//			$("#picture").css({"display":"flex"});
+//		})
+
+	</script>
+</html>

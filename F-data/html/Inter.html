@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>互动</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+		<script src="../js/jquery-1.11.3.js"type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+		html,body{
+			width: 100%;
+			height: 100%;
+		}
+		.content{
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items:center;
+			font-family: "微软雅黑";
+		}
+		/*=============头部==========*/
+		header{
+			width: 100%;
+			height: 0.9rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		    font-size: 0.3rem;
+		    background: #FF5857;
+		    color: #FFF;
+		    position: relative;
+		
+		} 
+		/*返回上一层符号*/
+		.returns{
+			position: absolute;
+			width: 0.8rem;
+			height: 100%;
+			top: 0;
+			left: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.returns span{
+			display:block;
+			border-left: 0.03rem solid #FFFFFF;
+			border-bottom: 0.03rem solid #FFFFFF;
+			width: .22rem; 
+			height: .22rem;
+			transform: rotate(45deg);
+		}
+	 	.save{
+			top: 45%;
+			margin-top: -0.11rem;
+			display:block;
+		    position: absolute;
+		    right: 0.3rem;			
+			font-size: .25rem;			
+		}
+		/*==============渔群基本信息==========*/
+		.main{
+			width: 100%;
+			flex: 1;
+			overflow-y: auto;
+		}
+		.main>ul{
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+		.main>ul>li{
+			border-radius: 0.08rem;
+			margin-top: .3rem;
+			width: 90%;
+			height: 2.6rem;
+		}
+		.main>ul>li>img{
+			width: 100%;
+			height: 100%;
+			border-radius: 0.08rem;
+		}
+		#all{
+			width: 100%;
+			height: 100%;
+			background-color:rgba(0,0,0,0.4); 
+	       	display: flex;
+	       	justify-content: center;
+	       	align-items: center;
+	        position: fixed ;
+	        left: 0;
+	        top: 0;
+	        overflow: hidden;
+	    	z-index: 2;
+	    	opacity: inherit;
+	    	display: none;
+		} 
+		/*--------消息弹框 ------*/
+		.banner{
+			width: 100%;
+			height: 2rem;
+			position: fixed ;
+			bottom: 0;
+		}
+		.build{
+			width: 100%;
+			height: 2rem;
+			display: flex;
+			justify-content: center;
+		}
+		.build-a{
+			width: 80%;
+			height: 100%;
+			border-radius:.15rem;
+			border: solid#808080 1px;
+			background: #FFFFFF;
+			font-size: .32rem;
+			display: flex;
+			justify-content: center;
+		}
+		.build-a>p{
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+		.build-a>p>span{
+			margin-top: .1rem;
+		}
+		.main ul:nth-of-type(3) li{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: #FF5857;
+			color: #FFFFFF;
+			font-size: .3rem;
+		}
+		</style>
+</head>
+<body>
+	<div class="content">
+		<div class="header_up"></div>
+		<header>
+			<a class="returns"><span></span></a>
+			<p>互动</p>
+			<div class="save"></div>
+		</header>
+			<div class="main">
+			<ul>
+				<li><img src="../img/fash.jpg"/></li>
+			</ul>
+			<ul>
+				<li><img src="../img/dance.jpg"/></li>
+			</ul>
+			<ul>
+				<li><span>敬请期待</span></li>
+			</ul>
+		</div>
+		<!--提示语-->
+		<div id="all">
+			<div class="banner">
+				<div class="build">
+					<div class="build-a">
+						<p>敬请期待</p>			
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('.returns').click(function(){
+			window.location.href='F-data.html'
+		})
+		$('.main').on('click',function(){
+			$('#all').fadeToggle({ "duration": 600,
+		})
+			$(".banner").animate({bottom:'300px'});
+		});
+		 $('#all').on("click",function(){
+			$('#all').fadeOut({ "duration": 600, 
+		})	
+		$(".banner").animate({bottom:0});
+		});
+		
+	</script>
+</body>
+</html>

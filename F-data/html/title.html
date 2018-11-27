@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/reset.css" />
+		<script src="../js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			html{
+				width: 100%;
+				height: 100%;
+			}
+			body{
+				width: 100%;
+				min-height: 100%;
+				background:rgb(240,239,244);   
+			}
+			#header{					
+				width: 100%;
+				height:.9rem;
+				background: #FF5857;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-family: "微软雅黑";
+				font-size: .3rem;
+				color: #FFFFFF;
+				position: relative;
+			}	
+			.returns{
+				position: absolute;
+				width: 0.8rem;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.returns span{
+				display:block;
+				border-left: 0.03rem solid #FFFFFF;
+				border-bottom: 0.03rem solid #FFFFFF;
+				width: .22rem; 
+				height: .22rem;
+				transform: rotate(45deg);
+			}
+			/*列表大样式*/
+			.aways{
+				width: 100%;
+				height:100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				float: left;
+				background: #FFFFFF;
+				border-bottom: 1px solid #D3D3D3;
+			}
+			/*单个列表样式*/
+			.content{
+				width: 90%;
+				height: .9rem;
+				font-family: "微软雅黑";
+				font-size: .26rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.content-r{
+				height: 100%;
+				width: 40%;
+				line-height: .9rem;
+			}
+			.content .pic{
+				width: .26rem;
+				height: .26rem;
+			}
+			
+		</style>
+</head>
+	<body>
+		<!--头部上半部分填充-->
+		<div class="header_up"></div>
+		<div id="header">
+			<a class="returns"><span></span></a>
+			<div class="edit">渔池头衔</div>
+		</div>
+		<div class="name">
+			
+		</div>
+		<script type="text/javascript">
+			$('.returns').on('click',function(){
+				window.location.href="F-data.html"
+			});
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+				var i_cookies= localStorage.cookies;
+				var i_fish_id = localStorage.fish_id;
+				var i_groupId = localStorage.groupId;
+				var i_type = localStorage.type;
+				var i_per_id = localStorage.per_id;
+				
+			} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+				var i_cookies= sessionStorage.cookies;
+				var i_fish_id = sessionStorage.fish_id;
+				var i_groupId = sessionStorage.groupId;
+				var i_type = sessionStorage.type;
+				var i_per_id = sessionStorage.per_id;
+			}
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+				var i_member_type = localStorage.member_type;
+			} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+				var i_member_type = sessionStorage.member_type;
+			}
+			$.ajax({
+				type:"GET",
+				url: "http://47.92.96.194:8000/community/honors/info/"+i_fish_id,
+				dataType: 'json',
+				beforeSend: function(res){
+					document.cookie = i_cookies +";path=/";
+				},
+				xhrFields: {
+		         	withCredentials: true
+		       	},
+				success: function(data) {
+					var data = data.data;
+					console.log(data)
+					for(var i = 0; i<data.length; i++){
+						var str = '<div class="aways"><div class="content"><span class="content-l">'+data[i].level+'</span><div><span class="content-r"><span>'+data[i].name+'</span></span><img src="../img/右边.png"/ class="pic"></div></div><input type="hidden" class="member_id" value="'+ data[i].id +'"/></div>';
+						$('.name').prepend(str);
+					}
+					if (i_member_type == 3) {
+						return false;
+					}else{
+						$('.aways').on('click',function(){
+							var comId = $(this).children('.member_id').val();
+							if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+								localStorage.setItem("communityId",comId);
+							} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+								sessionStorage.setItem("communityId",comId);
+							}
+							window.location.href="edit-T.html";
+						});
+					}
+				},
+				error: function(xhr, error, ex) {
+					console.log("网络有问题！！！");
+				}
+			});
+		</script>
+	</body>
+</html>

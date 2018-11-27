@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>渔群公告</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+		<script src="../js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			html,body{
+				width: 100%;
+				height: 100%;
+			}
+			.content{
+				width: 100%;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items:center;
+			}
+			/*=============头部==========*/
+			#header{					
+				width: 100%;
+				height:.9rem;
+				background: #FF5857;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-family: "微软雅黑";
+				font-size: .3rem;
+				color: #FFFFFF;
+				position: relative;
+			}	
+			.returns{
+				position: absolute;
+				width: 0.8rem;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.returns span{
+				display:block;
+				border-left: 0.03rem solid #FFFFFF;
+				border-bottom: 0.03rem solid #FFFFFF;
+				width: .22rem; 
+				height: .22rem;
+				transform: rotate(45deg);
+			}
+			/*保存*/
+			#header .save{
+				top: 45%;
+				margin-top: -0.11rem;
+				display:block;
+			    position: absolute;
+			    right: 0.3rem;			
+				font-size: .25rem;			
+			}
+			/*铅笔*/
+			#header .save img{
+				width: .4rem;
+				height: .4rem;
+				/*display: none;*/
+			}
+			header>span{
+				display:block;
+			    position: absolute;
+			    right: 0.3rem;
+			    font-size: 14px;
+			}
+			.found img{
+				width: .4rem;
+				height: .4rem;
+				top: 45%;
+				margin-top: -0.2rem;
+				display:block;
+			    position: absolute;
+			    right: 0.1rem;			
+			}
+			.main{
+				width: 100%;
+				flex: 1;
+				overflow-y: auto;
+				position: relative;
+				background: #fff;
+			}
+			.main li{
+				width: 95%;
+				height: 1.4rem;
+				border-bottom: 1px solid #eee;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				padding-left: 5%;
+				position: relative;
+			}
+			.main li p:nth-of-type(1){
+				font-size: 0.28rem;
+				font-family: "微软雅黑";
+				margin-bottom: 0.16rem;
+			}
+			.main li p:nth-of-type(2){
+				font-size: 0.22rem;
+				color: #999;
+			}
+			.main li p:nth-of-type(3){
+				position: absolute;
+				width: 90%;
+				left: 5%;
+				top: 100%;
+				padding-top: 0.2rem;
+				line-height: 0.34rem;
+				font-size: 0.26rem;
+				display: none;
+				
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<!--头部上半部分填充-->
+			<div class="header_up"></div>
+			<div id="header" class="mui-bar mui-bar-nav">
+				<a class="returns"><span></span></a>
+				<div class="edit">渔池公告</div>
+				<div class="save"><img src="../img/铅笔 (1).png"/></div>
+			</div>
+			<div class="main mui-content">
+				<div id="pullrefresh" class=" mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<!--数据列表-->
+						<ul class="mui-table-view mui-table-view-chevron">
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			//获取本地存储数据
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+				var i_cookies= localStorage.cookies;
+				var i_fish_id = localStorage.fish_id;
+				var i_groupId = localStorage.groupId;
+				var i_type = localStorage.type;
+				var i_per_id = localStorage.per_id;
+			} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+				var i_cookies= sessionStorage.cookies;
+				var i_fish_id = sessionStorage.fish_id;
+				var i_groupId = sessionStorage.groupId;
+				var i_type = sessionStorage.type;
+				var i_per_id = sessionStorage.per_id;
+			}
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+				var i_member_type = localStorage.member_type;
+			} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+				var i_member_type = sessionStorage.member_type;
+			};
+			var list_num = 1;
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					up: {
+						auto:true,
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+//			pullupRefresh();
+			function pullupRefresh() {
+				setTimeout(function() {
+					$.ajax({
+						type:"GET",
+						url: "http://47.92.96.194:8000/community/notice/list/"+i_fish_id+"?pageNum="+list_num,
+						dataType: 'json',
+						beforeSend: function(res){
+							document.cookie = i_cookies+";path=/";
+						},
+						xhrFields: {
+				         	withCredentials: true
+				       	},
+						success: function(data) {
+							list_num++;
+							if (data.code != 1000) {
+								mui.toast(data.message);
+							}else{
+								var data = data.data;
+								for(var i = 0; i<data.length; i++){
+									var i_time = otime(data[i].createTime);
+									var str = "<li><p>"+data[i].title+"</p><p><span>"+data[i].auth+"</span>&nbsp;<span>"+i_time+"</span></p><p class='sub'>"+data[i].content+"</p></li>";
+									$('.main').prepend(str);
+								}
+							}
+						},
+						error: function(xhr, error, ex) {
+							console.log("网络有问题！！！");
+						}
+					});
+				}, 1500);
+//				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+			};
+			$(function(){
+				if (i_member_type == 3) {
+					$('.save').hide();
+				}else{
+					$('.save').css({"display":"block"})
+				};
+				//判断时间
+				function otime(times){
+					var tt = new Date(times);
+					var day = tt.getDate()<10?'0'+tt.getDate():tt.getDate();
+					var hou = tt.getHours()<10?'0'+tt.getHours():tt.getHours();
+					var min = tt.getMinutes()<10?'0'+tt.getMinutes():tt.getMinutes();
+					var str = tt.getFullYear() + "年"+tt.getMonth()+"月"+day+"日 "+hou+":"+min ;
+					return str;
+				};
+				
+				var xs = false;
+				$('.main').on('click','li',function(){
+					if (!xs) {
+						xs = true;
+						$(this).children('.sub').show();
+						$(this).siblings().hide();
+						$('.edit').html('公告详情');
+					}else{
+						xs = false;
+						$(this).children('.sub').hide();
+						$(this).siblings().show();
+						$('.edit').html('渔池公告');
+					}
+				})
+				$('img').on('click',function(){
+					window.location.href="N-build.html";
+				})
+				$('.returns').on('click',function(){
+					window.location.href="F-data.html";
+				})
+			})	
+		</script>
+	</body>
+
+</html>

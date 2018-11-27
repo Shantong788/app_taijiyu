@@ -1,0 +1,246 @@
+	html,body{
+		width: 100%;
+		height: 100%;
+		background: #fff;
+	}
+	#header{					
+		width: 100%;
+		height:.9rem;
+		background: #FF5857;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-family: "微软雅黑";
+		font-size: .3rem;
+		color: #FFFFFF;
+		position: relative;
+			}	
+	.returns{
+		position: absolute;
+		width: 0.8rem;
+		height: 100%;
+		top: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.returns span{
+		display:block;
+		border-left: 0.03rem solid #FFFFFF;
+		border-bottom: 0.03rem solid #FFFFFF;
+		width: .22rem; 
+		height: .22rem;
+		transform: rotate(45deg);
+	}
+	/*----编辑-----*/
+	#header .ipt{
+		background: #FF5857;
+		color: #fff;
+		border: none;
+		top: 45%;
+		margin-top: -0.11rem;
+		display:block;
+	    position: absolute;
+	    right: 0.3rem;			
+		font-size: .25rem;			
+	}
+	#header .ipt-a{
+		background: #FF5857;
+		color: #fff;
+		border: none;
+		top: 45%;
+		margin-top: -0.11rem;
+		display:block;
+	    position: absolute;
+	    right: 0.3rem;			
+		font-size: .25rem;
+		display: none;			
+	}
+	/*------点击编辑变完成-----*/
+	#header .ipt-a{
+		background: #FF5857;
+		color: #fff;
+		border: none;
+		top: 45%;
+		margin-top: -0.11rem;
+		display:block;
+	    position: absolute;
+	    right: 0.3rem;			
+		font-size: .25rem;
+		display: none;			
+	}
+	#all{
+		font-size: .22rem;
+		font-family: "微软雅黑";
+	}
+	/*----------蒙层---------*/
+	#every{
+		width: 100%;
+		height: 100%;
+		background-color:rgba(0,0,0,0.4); 
+       	display: flex;
+       	justify-content: center;
+       	align-items: center;
+        position: fixed ;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+    	z-index: 2;
+    	display: none;
+	}
+	/*群主*/
+	.group{
+		width: 100%;
+		height: .8rem;
+		display: flex;
+		align-items: center;
+		border-bottom: 1px solid #D3D3D3;		
+	}
+	.group span{
+		margin-left: .2rem;		
+	}
+	.member{
+		width: 100%;
+		height: 1.1rem;
+		border-bottom: 1px solid #D3D3D3;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		float: left;
+	}
+	.box-a{
+		width: 92%;
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.box{
+		width: 85%;
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.portrait{
+		height: .8rem;
+		width: .8rem;
+		border-radius: .4rem;
+		background: #D3D3D3;
+	}
+	.portrait img{
+		width: 100%;
+		height: 100%;
+		border-radius:50%;
+	}
+	.name{
+		width: 80%;
+		font-size: .24rem;
+		font-family: "微软雅黑";
+	}
+	.select {
+		width: .5rem;
+		height: .5rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.select .apple{
+		width: .3rem;
+		height: .3rem;
+		float: left;
+		display: none;
+	}
+	.admin{
+		width: 100%;
+		height: .8rem;
+		display: flex;
+		align-items: center;
+		border-bottom: 1px solid #D3D3D3;
+		/*margin-left: .2rem;*/
+	}
+	.admin span{
+		margin-left: .2rem;
+	}
+	.admin span .admin_num{
+		margin: 0;
+	}
+	.add{
+		width: 100%;
+		height: 1rem;
+		border-bottom: 1px solid #D3D3D3;
+		display: flex;
+		justify-content: center;
+		float: left;
+	}
+	.box-x{
+		width: 93%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+	}
+	/*添加*/
+	.add .portrait-x{
+		height: .9rem;
+		width: .9rem;
+		border-radius: .45rem;
+		margin-right: .2rem;
+	}
+	.add .portrait-x img{
+		height: 100%;
+		width: 100%;
+		border-radius: 50%;
+	}
+	/*是否删除消息弹框*/	
+	.banner{
+		width: 100%;
+		height: 2.3rem;
+	}
+	.build{
+		width: 100%;
+		height: 2.3rem;
+		display: flex;
+		justify-content: center;
+	}
+	.build-a{
+		width: 80%;
+		height: 100%;
+		border-radius:5% ;
+		border: solid#808080 1px;
+		background: #FFFFFF;
+		font-size: 14px;
+	}
+	.build-a li{
+		width: 100%;
+    	height: 37%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-top: solid#808080 1px;				
+	}
+	.build-a p{
+		width: 100%;
+    	height: 50%;
+		font-size: .28rem;
+		display: flex;
+		justify-content: center;
+		line-height: 1.2rem;
+	}
+	.build .yes{
+		width: 50%;
+    	height: 100%;
+    	color: #FF5857;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.build .none{
+		width: 50%;
+    	height: 100%;
+    	color: #808080;
+		border-right: solid #333333 1px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}	

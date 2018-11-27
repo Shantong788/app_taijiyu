@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/reset.css" />
+		<script src="../js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+</head>
+	<style>
+#header{					
+		width: 100%;
+		height: 0.9rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	    font-size: 0.3rem;
+	    background: #FF5857;
+	    color: #FFF;
+	    position: relative;
+	    font-family: "微软雅黑";
+	} 	
+	.returns{
+		position: absolute;
+		width: 0.8rem;
+		height: 100%;
+		top: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.returns span{
+		display:block;
+		border-left: 0.03rem solid #FFFFFF;
+		border-bottom: 0.03rem solid #FFFFFF;
+		width: .22rem; 
+		height: .22rem;
+		transform: rotate(45deg);
+	}
+	/*保存*/
+	#header .save{
+		top: 45%;
+		margin-top: -0.11rem;
+		display:block;
+	    position: absolute;
+	    right: 0.3rem;			
+		font-size: .25rem;			
+	}
+	#all{
+		width: 100%;
+		height: 8rem;
+		display: flex;
+		flex-direction: column;	
+		align-items: center;
+		font-size: 16px;
+		
+	}
+	.explain{
+		width: 90%;
+		height: 1rem;
+		margin-top: .2rem;
+	}
+	.monny{
+		width: 90%;
+		height: .7rem;
+		border-bottom:1px solid #D3D3D3; 
+		border-top:1px solid #D3D3D3; 
+	}
+	.monny p{
+		float: left;
+		color: #808080;
+		line-height: .7rem;
+		margin-right: .2rem;
+	}
+	.txt{
+		width: 60%;
+		height: 100%;
+		border:none;
+		font-size: 16px;
+	}	
+	</style>
+	<body>
+		<!--头部上半部分填充-->
+		<div class="header_up"></div>
+		<div id="header">
+			<a class="returns"><span></span></a>
+			<div class="edit">设置付费入池</div>
+			<div class="save">完成</div>
+		</div>
+		<!--规则-->
+		<div id="all">
+			<div class="explain">
+				<p>渔友支付指定渔币方可入群，无需审核，所收费用将进入群主账户</p>
+			</div>
+			<div class="monny">
+				<p>付费渔币</p>
+				<input type="text" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'')" value="" class="txt" maxlength="8"/>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('.returns').click(function(){
+				history.go(-1);
+			})
+			$('.save').click(function(){
+				var pay = $('.txt').val();
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					localStorage.setItem("num",pay);
+				} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+					sessionStorage.setItem("num",pay);
+				};
+				
+				window.location.href = 'set-up.html';
+			})
+		</script>
+	</body>
+</html>

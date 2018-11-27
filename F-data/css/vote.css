@@ -1,0 +1,239 @@
+@charset "utf-8";
+
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.content{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items:center;
+	background: #f1f1f1;
+	font-family: "微软雅黑";
+}
+/*=============头部==========*/
+header{
+	width: 100%;
+	height: 0.9rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    font-size: 0.3rem;
+    background: #FF5857;
+    color: #FFF;
+    position: relative;
+
+} 
+/*返回上一层符号*/
+.returns{					
+	display:block;
+	position: absolute;
+	left: 0.3rem;
+	top: 50%;
+	margin-top: -0.11rem;
+	border-left: 0.03rem solid #FFFFFF;
+	border-bottom: 0.03rem solid #FFFFFF;
+	width: .22rem; 
+	height: .22rem;
+	transform: rotate(45deg);
+}
+ .save{
+		top: 45%;
+		margin-top: -0.11rem;
+		display:block;
+	    position: absolute;
+	    right: 0.3rem;			
+		font-size: .25rem;			
+	}
+/*==============鱼群基本信息==========*/
+.main{
+	width: 100%;
+	flex: 1;
+	overflow-y: auto;
+}
+.write{
+	width: 100%;
+	height: .9rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	display: none;
+}
+.write>span{
+	width: 23%;
+	height: 65%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: .22rem;
+}
+.write-a{
+	background: #FF5857;
+	color: #FFFFFF;
+}
+.write-b{
+	background: #FFFFFF;
+	color: #FF5857;
+}
+#first{
+	width: 100%;
+	display: flex;
+	/*display: none;*/
+	flex-direction: column;
+}
+#first>ul{
+	width: 100%;
+	height: .9rem;
+	background: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-bottom: solid #DCDCDC 1px;
+}
+#first>span{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+#first>span ul{
+	width: 100%;
+	height: .9rem;
+	background: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-bottom: solid #DCDCDC 1px;
+}
+
+#first>ul>li{
+	width: 8%;
+	height: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.vote_s ul li{
+	width: 8%;
+	height: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#first>ul>li>img{
+	width: .33rem;
+	height: .33rem;
+}
+.vote_s ul li img{
+	width: .33rem;
+	height: .33rem;
+}
+#first>ul>span{
+	font-size: .24rem;
+	color: #FF5857;
+}
+.txt{
+	width: 70%;
+	height:80%;
+	margin-left: .1rem;
+	border: 0;
+	font-size: .23rem;
+	color: #999999;
+	margin-top: .1rem;
+}
+.border{
+	height: .3rem;
+}
+.details>ul{
+	width: 100%;
+	height: 2.5rem;
+	background: #FFFFFF;
+	display: flex;
+	align-items: center;
+	flex-direction: column ;
+}
+.details>ul>b{
+	width: 95%;
+	height: 30%;
+	color:#696969;
+	font-size: .25rem;
+	display: flex;
+	align-items: center;
+}
+.details>ul>textarea{
+	font-size: .23rem;
+	width: 95%;
+	height: 70%;
+	border: 0;
+}
+a>img{
+	width: .88rem;
+	height: .88rem;
+}
+/*---差号----*/
+.imgs{
+	width: .35rem;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	padding:0 .3rem;
+}
+.imgs>img{
+	width: .34rem;
+	height: .34rem;
+	display: none;
+}
+/*图片投票*/
+#picture{
+	width: 100%;
+	display: flex;
+	display: none;
+	flex-direction: column; 
+}
+#picture>ul{
+	width: 100%;
+	height: 1.3rem;
+	background: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-bottom: solid #DCDCDC 1px;
+}
+#picture .pic-a{
+	width: 100%;
+	height: .9rem;
+	background: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-bottom: solid #DCDCDC 1px;
+}
+#picture>ul>span{
+	font-size: .24rem;
+	color: #FF5857;
+}
+.miss{
+	width:98%;
+}
+#picture>ul>li{
+	width:8%;
+	height: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#picture>ul>li>img{
+	width: .33rem;
+	height: .33rem;
+}
+#picture>ul> .txt{
+	width: 85%;
+	height:90%;
+	margin-left: .1rem;
+	border: 0;
+	font-size: .23rem;
+	color: #999999;
+	margin-top: .1rem;
+}
+

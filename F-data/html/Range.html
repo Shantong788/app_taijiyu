@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/Range.css"/>
+		<script src="../js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+</head>
+	<body>
+		<!--头部上半部分填充-->
+		<div class="header_up"></div>
+		<div id="header">
+			<a class="returns"><span></span></a>
+			<div class="edit">渔池可见范围</div>
+			<div class="save">保存</div>
+		</div>
+		<div id="comment">
+			<div class="aways">
+				<div class="content">
+					<span class="content-l">公开</span>
+					<span class="content-r"><img src="../img/选择.png"/ class="pic">	</span>
+				</div>				
+			</div>
+			<div class="aways">
+				<div class="content">
+					<span class="content-l">不公开</span>
+					<span class="content-r"><img src="../img/选择.png"/ class="pic">	</span>
+				</div>				
+			</div>
+			<div id="details">
+				<div class="p">
+				&nbsp; &nbsp;<span>公开</span><br />
+				<span>渔池向所有用户开放，其他用户可以搜索到该渔池，该渔池也会出现在推荐渔池附近渔池中</span>
+				</div>
+				<br />
+				<div class="p">
+				&nbsp; &nbsp;<span>不公开</span><br />
+				<span>渔池仅对渔池成员开放，其他用户不能搜索到该渔池，该渔池也不会出现在推荐渔池附近渔池中</span>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(function(){
+				$('.aways').on('click',function(){
+					$(this).siblings().children('.content').children('.content-r').children('img').hide();
+					$(this).children('.content').children('.content-r').children('img').toggle();
+				})
+			})
+			
+			$('.returns').on('click',function(){
+				window.location.href='F-data.html'
+			})
+			$('.save').on('click',function(){
+				window.location.href='F-data.html'
+			})
+		</script>
+	</body>
+</html>

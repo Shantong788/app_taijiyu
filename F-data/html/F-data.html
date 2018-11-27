@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>渔群资料</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<WebView  
+		    android:id="@+id/web"  
+		    android:layout_width="fill_parent"  
+		    android:layout_height="fill_parent"  
+		    android:layerType="software"  
+		    android:scrollbars="none" />  
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/F-data.css"/>
+		<script src="../js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="content">
+			<!--头部填充-->
+			<div class="header_up"></div>
+			<!--头部-->
+			<header>
+				<a class="returns"><span></span></a>
+				<span onclick="mui.toast('登陆成功')">渔池资料</span>
+				<!--<span>升级规则</span>-->
+			</header>
+			<div class="main">
+				<!--渔群头像等基本信息-->
+				<div class="group_head_max">
+					<div class="group_head">
+						<span>
+						</span>
+						<div class="group_info">
+							<p>
+								<span></span><!--&nbsp;lv--><span style="display: none;"></span>
+							</p>
+							<span></span>
+							<p>人气：<span></span>&nbsp;发布：<span></span></p>
+						</div>
+						<div class="box I_group" >
+							<span>入池通知 </span>
+							<ul class="news"><img src="../img/通知 (2).png"/></ul>
+						</div>
+					</div>
+				</div>
+				<!--渔池信息设置-->
+				<div class="group_list_max">
+					<ul class="group_list">
+						<li>
+							<a href="./Notice.html"><img src="../img/公告.png"/></a>
+							<span>渔群公告</span>
+						</li>
+						<li>
+							<a href="./F-introduce.html"><img src="../img/简介.png"/></a>
+							<span>渔群介绍</span>
+						</li>
+						<li class="Useless">
+							<a href="skin.html"><img src="../img/换肤.png"/></a>
+							<span>个性换肤</span>
+						</li>
+						<li>
+							<a href="vote-list.html"><img src="../img/投票.png"/></a>
+							<span>投票</span>
+						</li>
+						<li class="Useless">
+							<a href="Inter.html"><img src="../img/互动.png"/></a>
+							<span>互动</span>
+						</li>
+						<li>
+							<a href="pexels.html"><img src="../img/个性化定制.png"/></a>
+							<span>个性化定制</span>
+						</li>
+					</ul>
+					<!--<ul class="group_list I_member">
+						<li>
+							<a href="./Notice.html"><img src="../img/公告.png"/></a>
+							<span>渔群公告</span>
+						</li>
+						<li>
+							<a href="./F-introduce.html"><img src="../img/简介.png"/></a>
+							<span>渔群介绍</span>
+						</li>
+						
+						<li class="Useless">
+							<a href="Inter.html"><img src="../img/互动.png"/></a>
+							<span>互动</span>
+						</li>
+					</ul>-->
+				</div>
+				<!--渔王-->
+				<div class="group_peo_max-a">
+					<div class="group_peo-a">
+						<div class="king">
+							<span>渔王</span>
+							<li class="king_img">
+								<img src="../img/添加 (1).png" class="pic"/>
+							</li>	
+						</div>
+						<div class="Queen">
+							<span>渔后</span>
+							<li class="queen_img">
+								<img src="../img/添加 (1).png" class="pic"/>
+							</li>	
+						</div>
+					</div>
+				</div>
+				
+				<!--渔群管理员-->
+				<div class="group_peo_max">
+					<a class="group_peo admin_s">
+						<p><span>管家</span>&nbsp;<span class="admin_num"></span>/5名</p>
+						<span>
+							<ul class="group_admin"></ul>
+							<span class="add_admin"><img src="../img/添加.png"/></span>
+							<span class="info_go"></span>
+						</span>
+					</a>
+				</div>
+				<!--渔池成员-->
+				<div class="group_peo_max">
+					<a class="group_peo firend_s">
+						<p><span>渔民</span>&nbsp;<span class="firend_num"></span>名</p>
+						<span>
+							<ul class="group_firend"></ul>
+							<span class="info_go"></span>
+						</span>
+					</a>
+				</div>
+				<!--设置渔池头衔-->
+				<div class="setTitle_max">
+					<a href="title.html" class="setTitle tit_1">
+						<p class="I_user">渔池头衔</p>
+						<p class="I_group">设置渔池头衔</p>
+						<span class="info_go"></span>
+					</a>
+				</div>
+				<div class="setTitle_max I_group">
+					<a href="set-up.html" class="setTitle tit_2" >
+						<p>入池设置</p>
+						<span class="info_go"></span>
+					</a>
+				</div>
+				<!--<div class="setTitle_max I_group">
+					<div class="setTitle tit_3">
+						<p>渔池可见范围</p>
+					</div>
+				</div>-->
+				<div class="setTitle_max-a I_group admin_1">
+					<div class="setTitle tit_4" style="color: #999;">
+						<p>解散渔池</p>
+					</div>
+				</div>
+				<div class="setTitle_max-p I_member admin_2">
+					<div class="setTitle tit_5">
+						<p>退出渔池</p>
+					</div>
+				</div>
+			</div>
+		<!----—-----------确定删除吗？---------->
+			<div id="every-a">
+				<div class="banner">
+					<div class="build">
+						<div class="build-a">
+							<p>确认解散该渔池吗</p><br />
+							<li>
+								<span class="none">再想想</span>	
+								<a class="yes">我确定</a>	
+							</li>			
+						</div>
+					</div>
+				</div>
+			</div>
+			<!----—-----------确定退出吗？---------->
+			<div id="every">
+				<div class="banner">
+					<div class="build">
+						<div class="build-a">
+							<p>确定退出该渔池吗</p><br />
+							<li>
+								<span class="none">再想想</span>	
+								<a class="yes sign_out">我确定</a>	
+							</li>			
+						</div>
+					</div>
+				</div>
+			</div>
+		<!------------------点击正在开发----------------->
+		<div id="open">
+				<div class="banner">
+					<div class="build">
+						<div class="build-b">
+							<p class="less">团队正在努力开发，敬请期待...</p><br />			
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/F-data.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+//			function tit_1(){
+//				window.location.href = 'title.html?v='+(new Date().getTime());
+//			}
+//			$('.tit_1').on('touchend',function(){
+//				$('header p').html(1);
+//				window.location.href = 'title.html?v='+(new Date().getTime());
+//				
+//			})
+//			$('.tit_2').on('touchstart',function(){
+//				$('header p').html(2);
+//				window.location.href ='set-up.html?time='+((new Date()).getTime());
+////				location.href = 'http://47.92.96.194:8000/F-data/html/set-up.html';
+//			})
+			$('.firend_s').on('click',function(){
+				window.location.href = 'cope-member.html';
+				return false;
+			})
+			$('.admin_s').click(function(){
+				setTimeout(function(){ 
+					window.location.href = 'Admin.html';
+				},100); 
+//				window.location.href = 'Admin.html';
+			})
+			$('.box').click(function(){
+				window.location.href = 'Apply.html';
+			})
+			//			点击退出/解散,弹出蒙层
+//			$('.setTitle_max-a').click(function(){
+//				
+////				$("#every-a").css({"display":"flex"});
+//			})
+			$('.setTitle_max-p').click(function(){
+				$("#every").css({"display":"flex"});
+			})
+//			跳出弹框继续编写--解散渔群
+			$('#every-a').click(function(){
+				$("#every-a").css({"display":"none"});
+			})
+			$('.build-a').click(function(){
+				$(".build").css({"display":"flex"});
+				event.stopPropagation()
+			})
+			//			跳出弹框继续编写---退出渔群
+			$('#every').click(function(){
+				$("#every").css({"display":"none"});
+			})
+			$('.build-a').click(function(){
+				$(".build").css({"display":"flex"});
+				event.stopPropagation()
+			})
+			$('.none').click(function(){
+				$("#every").css({"display":"none"});
+			})
+			$('.none').click(function(){
+				$("#every-a").css({"display":"none"});
+			})
+		</script>
+	</body>
+
+</html>

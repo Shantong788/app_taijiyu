@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>设置管理员</title>
+	<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+		<link rel="stylesheet" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/Admin.css"/>
+		<script src="../js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<div id="whole">
+			<!--头部上半部分填充-->
+			<div class="header_up"></div>
+			<div id="header">
+				<a href="F-data.html" class="returns"><span></span></a>
+				<div class="edit">管家</div>
+				<span class="ipt">编辑</span>
+				<span class="ipt-a">完成</span>
+			</div>
+			<!-------------所有内容------------------->
+			<div id="all">
+			<!----群主--->
+				<div class="comment">
+					<div class="group">
+						<span>群主</span>
+					</div>
+					<div class="member">
+						<div class="box-a">
+							<div class="portrait"></div>
+							<div class="name"></div><br />
+							<input type="hidden" name="" id="groupMaster_id" value="" />
+						</div>
+					</div>
+				</div>	
+				<!-----管理员----->
+				<div class="comment-bo">
+					<div class="admin">
+						<span>管理员(<span class="admin_num"></span>/5)</span>
+					</div>
+					<ul>
+						
+					</ul>
+					<div class="add" style="display: none;">
+						<div class="box-x">
+							<div class="portrait-x"><img src="../img/添加.png"/></div>
+							<div class="name">添加管理员</div><br />
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-----------确定删除吗？---------->
+			<div id="every">
+				<div class="banner">
+					<div class="build">
+						<div class="build-a">
+							<p>确认删除该管理员吗</p><br />
+							<li>
+								<span class="none">取消</span>	
+								<a class="yes">删除</a>	
+							</li>			
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//			页面跳转
+			$('.box-x').click(function(){
+				window.location.href = 'add-A.html';
+			});
+//			$('.returns').click(function(){
+//				window.location.href = 'F-data.html';
+//			});
+			$('.none').click(function(){
+				window.location.href = 'Admin.html';
+			})
+	//--------------------获取管理员列表------------------------------
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+				var i_cookies= localStorage.cookies;
+				var i_fish_id = localStorage.fish_id;
+				var i_groupId = localStorage.groupId;
+				var i_type = localStorage.type;
+				var i_per_id = localStorage.per_id;
+				
+			} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+				var i_cookies= sessionStorage.cookies;
+				var i_fish_id = sessionStorage.fish_id;
+				var i_groupId = sessionStorage.groupId;
+				var i_type = sessionStorage.type;
+				var i_per_id = sessionStorage.per_id;
+			}
+			//获取鱼群信息
+			$.ajax({
+				type:"GET",
+				url: "http://47.92.96.194:8000/community/info/"+i_fish_id,
+		       	beforeSend: function(res){
+					document.cookie = i_cookies+";path=/";
+				},
+				xhrFields: {
+		         	withCredentials: true
+		       	},
+		       	crossDomain: true,
+				dataType: 'json',
+				success: function(data){
+					var data = data.data;
+					$('.comment .member .portrait').append('<img src="'+data.userTopicCountVO.headPic+'"/>');
+					$('.comment .member .name').html(data.userTopicCountVO.nickname);
+					$('#groupMaster_id').val(data.userTopicCountVO.id);
+					if (i_per_id==data.userTopicCountVO.id) {
+						$('.add').css({'display':'flex'});
+					}else{
+						$('.ipt').hide();
+					}
+				},
+				error: function(xhr, error, ex) {
+					console.log("网络有问题！！！");
+				}
+			});
+			$.ajax({
+				type:"POST",
+				url: "http://47.92.96.194:8000/friends/groupAdminFen",
+				data:{
+					'groupId':i_groupId
+				},
+				beforeSend: function(res){
+					document.cookie = i_cookies+";path=/";
+				},
+				xhrFields: {
+		         	withCredentials: true
+		       	},
+		       	crossDomain: true,
+				dataType: 'json',
+				success: function(data) {
+					var data = data.data;
+					if(data == null){
+						$('.admin_num').html(0);
+						mui.toast('暂未添加管理员');
+						return;
+					}else{
+						$('.admin_num').html(data.length);
+						for (var j = 0; j<data.length; j++) {
+							if (i_per_id==data[j].id) {
+								$('.add').css({'display':'flex'});
+								break;
+							}
+						}
+						for (var i = 0; i<data.length; i++) {
+							$('.comment-bo>ul').append('<div class="member"><div class="box"><div class="portrait"><img src="'+data[i].headPic+'"/></div><div class="name">'+data[i].nickname+'</div><input type="hidden" class="member_id" value="'+ data[i].id+'"/></div><div class="select"><img src="../img/减号.png" class="apple"/></div></div>')
+						};
+						//跳出弹框继续编写
+						$('#every').click(function(){
+							$("#every").css({"display":"none"});
+						});
+						$('.build-a').click(function(){
+							$(".build").css({"display":"flex"});
+							event.stopPropagation();
+						});
+			//    		编辑/完成/删减按钮
+						$(function(){
+							$('.ipt').on('click',function(){
+								$(".ipt").css({"display":"none"})
+								$(".ipt-a").css({"display":"flex"})
+								$('.apple').css({'display':'flex'});
+							});
+						});
+//						点击完成跳转页面
+						$('.ipt-a').on('click',function(){
+							window.location.href='F-data.html';
+							event.stopPropagation();
+						});
+			//			点击删除,弹出蒙层
+						$('.apple').click(function(){
+							$("#every").css({"display":"flex"});
+							var _this = $(this)
+							//点击删除
+							$('.yes').click(function(){
+							    _this.parents(".member").animate({
+							      	"opacity":0,
+							      	"display":"none"
+							    },300,function(){
+							    	_this.parents(".member").css({"display":"none"})
+							    })
+							    $("#every").css({"display":"none"});
+							    var userIds = _this.parent().siblings().children('.member_id').val();
+							    $.ajax({
+									type:"POST",
+									url: "http://47.92.96.194:8000/community/downAuth",
+									data:{
+										'communityId':i_fish_id,
+										'userId':userIds
+									},
+									beforeSend: function(res){
+										document.cookie = i_cookies+";path=/";
+									},
+									xhrFields: {
+							         	withCredentials: true
+							       	},
+								   	crossDomain: true,
+									dataType: 'json',
+									success: function(data) {
+										window.location.href="Admin.html"
+									},
+									error: function(xhr, error, ex) {
+										console.log("网络有问题！！！");
+									}
+								});
+							})
+							event.stopPropagation();
+						})
+					}
+				},
+				error: function(xhr, error, ex) {
+					console.log("网络有问题！！！");
+				}
+			});
+			
+			
+		</script>
+	</body>
+</html>

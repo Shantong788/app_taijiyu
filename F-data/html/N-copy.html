@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>新建介绍</title>
+	<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/reset.css" />
+		<script src="../js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+</head>
+		<style>
+	html,body{
+		width: 100%;
+		height: 100%;
+	}
+	.aways{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items:center;
+	}
+	#all{
+		width: 100%;
+		height: 100%;
+		background-color:rgba(0,0,0,0.4); 
+       	/*display: flex;
+       	align-items: center;
+       	justify-content: center;*/
+        position: fixed ;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+        z-index: 5;
+    	display: none;
+	} 		
+	#header{					
+		width: 100%;
+		height: 0.9rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	    font-size: 0.3rem;
+	    background: #FF5857;
+	    color: #FFF;
+	    position: relative;
+	    font-family: "微软雅黑";
+	} 	
+	.returns{
+		position: absolute;
+		width: 0.8rem;
+		height: 100%;
+		top: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.returns span{
+		display:block;
+		border-left: 0.05rem solid #FFFFFF;
+		border-bottom: 0.05rem solid #FFFFFF;
+		width: .22rem; 
+		height: .22rem;
+		transform: rotate(45deg);
+	}
+	/*保存*/
+	#header .save{
+		top: 45%;
+		margin-top: -0.11rem;
+		display:block;
+	    position: absolute;
+	    right: 0.3rem;			
+		font-size: .25rem;			
+	}
+	.content{
+		width: 100%;
+		height: 5rem;
+		display: flex;
+		justify-content: center;
+		overflow-y: hidden;
+	}
+	.content textarea{
+		height: 100%;
+		width: 90%; 
+		font-size: 14px;
+		font-family: "微软雅黑";
+		margin-top: .2rem;
+		color: #808080;
+		border: none;
+	}
+	.banner{
+		width: 100%;
+		height: 2.3rem;
+		z-index: 3;
+		margin: 70% 0%;
+	}
+	.build{
+		width: 100%;
+		height: 2.3rem;
+		display: flex;
+		justify-content: center;
+	}
+	.build-a{
+		width: 80%;
+		height: 100%;
+		border-radius:.15rem ;
+		border: solid#808080 1px;
+		background: #FFFFFF;
+		font-size: .25rem;
+	}
+	.build-a li{
+		display: flex;
+		justify-content: space-around;				
+	}
+	.build-a p{
+		font-size: .28rem;
+		display: flex;
+		justify-content: center;
+		line-height: 1.2rem;
+	}
+	.build a{
+		width: 1.2rem;
+		height: .5rem;
+		border-radius: .15rem;
+		background: #FF5857;
+		color: #FFFFFF;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.build span{
+		width: 1.2rem;
+		height: .5rem;
+		border-radius: .15rem;
+		border: solid #333333 1px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}	
+	</style>
+	<body>
+		<div class="aways">
+			<!--头部上半部分填充-->
+			<div class="header_up"></div>
+			<div id="header">
+				<a class="returns"><span></span></a>
+				<div class="edit">新建介绍</div>
+				<div class="save">保存</div>
+			</div>
+			<div class="content">
+				<textarea id="txt" rows="10" cols="30" placeholder="请输入渔池介绍(限定120字)" maxlength="120"></textarea>
+			</div>
+			<!-------提示语-------->
+			<div id="all">
+				<div class="banner">
+					<div class="build">
+						<div class="build-a">
+							<p>退出前需要保存更改</p><br />
+							<li>
+								<span class="none">不保存</span>	
+								<a class="yes">保存</a>		
+							</li>			
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			//获取本地存储数据
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+				var i_cookies= localStorage.cookies;
+				var i_fish_id = localStorage.fish_id;
+				var i_groupId = localStorage.groupId;
+				var i_type = localStorage.type;
+				var i_per_id = localStorage.per_id;
+				
+			} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+				var i_cookies= sessionStorage.cookies;
+				var i_fish_id = sessionStorage.fish_id;
+				var i_groupId = sessionStorage.groupId;
+				var i_type = sessionStorage.type;
+				var i_per_id = sessionStorage.per_id;
+			}
+			
+			function keep(txts,id,Ocookie){
+				var str = '{"describe":"'+txts+'","id":"'+id+'"}'
+				$.ajax({
+					type:"POST",
+					url: "http://47.92.96.194:8000/community/update",
+					data:{
+						'community1': str
+					},
+					beforeSend: function(res){
+						document.cookie = Ocookie+";path=/";
+					},
+					xhrFields: {
+			         	withCredentials: true
+			       	},
+			       	crossDomain: true,
+					dataType: 'json',
+					success: function(data) {
+						window.location.href="F-data.html";
+					},
+					error: function(xhr, error, ex) {
+						console.log("网络有问题！！！");
+					}
+				});
+			}
+			$('.save ').on('click',function(){
+				checkform();
+			});
+			$('.none').on('click',function(){
+				window.location.href="F-introduce.html"
+			})
+			$('.yes').on('click',function(){
+				checkform();
+			})
+			$('.returns').on('click',function(){
+				if(document.getElementById('txt').value.length==0){
+					window.location.href="F-data.html";
+			        return false;
+			    }else{
+			    	$('#all').fadeToggle({ "duration": 600,})           
+					$('#all').on("click",function(){
+					$('#all').fadeOut({ "duration":600,})	    
+			   		})
+				}		
+			});
+			//			跳出弹框继续编写
+			$('#all').click(function(){
+				$("#all").css({"display":"none"});
+			})
+			$('.build-a').click(function(){
+				$(".build").css({"display":"flex"});
+				event.stopPropagation();
+			})
+//			输入不能为空	
+			function checkform(){ 
+				
+				var Otxt = $('#txt').val();
+				console.log(Otxt)
+			    if(document.getElementById('txt').value.length==0){    
+			        alert('渔池介绍不能为空！');
+			        return false;
+			    }else{
+			    	keep(Otxt,i_fish_id,i_cookies);
+			    	
+			    }
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>投票 </title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/vote-list.css"/>
+		<script src="../js/jquery-1.11.3.js"type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<div class="content">
+		<div class="header_up"></div>
+		<header>
+			<a class="returns"><span></span></a>
+			<p>投票</p>
+			<div class="save" onclick="window.location.href='vote.html'"><img src="../img/加号.png"/></div>
+		</header>
+		<div class="main">
+			<div class="main_list">
+				<input type="hidden" class="vote_id" value="12345"/>
+				<div class=" box">
+					<div class="one">
+						<ul><img src="../img/10.png"/></ul>
+						<span><li>小鱼</li>这样就很好了啊 <p class="in_time">3分钟前</p></span>
+					</div>
+				</div>
+				<div class="list-a">
+					<div class="list">
+						<ul><img src="../img/ic_vote_statistic.png"/></ul>
+						<p>我发起了投票：<span>你喜欢猫还是喜欢狗 你喜欢猫还是喜欢狗 </span></p>
+						<div></div>
+					</div>
+				</div>
+				<div class="know">
+					<div class="know-a">
+					<p>详情：<span> 反正不喜欢你 反正不喜欢你反正不喜欢你反正不喜欢你反正不喜欢你反正不喜欢你</span></p>
+					</div>
+				</div>
+				<div class="next">
+					<div id="first">
+						<ul>
+							<input type="hidden" class="vote_id" value="asdfg"/>
+							<div class="banner">
+								<span>
+									<li><img src="../img/ic_target.png"/></li> 
+									<p>当然是猫咪</p>
+									<a><img src="../img/圆.png"/></a>
+								</span>
+							</div>
+						</ul>
+						<ul>
+							<div class="banner">
+								<span>
+									<li><img src="../img/ic_target.png"/></li> 
+									<p>当然是猫咪</p>
+									<a><img src="../img/圆.png"/></a>
+								</span>
+							</div>
+						</ul>
+					</div>	
+					<div class="play">
+						<span>投票</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('.returns').click(function(){
+			window.location.href='F-data.html';
+		});
+		//----------获取本地存储数据-----------
+					
+		if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+			var i_cookies= localStorage.cookies;
+			var i_fish_id = localStorage.fish_id;
+			var i_groupId = localStorage.groupId;
+			var i_type = localStorage.type;
+			var i_per_id = localStorage.per_id;
+			
+		} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+			var i_cookies= sessionStorage.cookies;
+			var i_fish_id = sessionStorage.fish_id;
+			var i_groupId = sessionStorage.groupId;
+			var i_type = sessionStorage.type;
+			var i_per_id = sessionStorage.per_id;
+		};
+		if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+			var i_member_type = localStorage.member_type;
+		} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+			var i_member_type = sessionStorage.member_type;
+		}
+		if (i_member_type == 3) {
+			$('.save').hide();
+		}else{
+			$('.save').css({"display":"block"});
+		};
+		var votid;
+		var nodeid;
+		$.ajax({
+			type:"GET",
+			url: "http://47.92.96.194:8000/community/vote/list/?communityId ="+i_fish_id+"&pageNum="+1,
+	       	crossDomain: true,
+			dataType: 'json',
+			beforeSend: function(res){
+				document.cookie = i_cookies+";path=/";
+			},
+			xhrFields:{
+	         	withCredentials: true
+	       	},
+			success: function(data) {
+				var data = data.data;
+				for(var i = 0; i<data.length; i++){
+					var str = '<div class="main_list"><input type="hidden" class="vote1_id" value="'+data[i].id+'"/><div class=" box"><div class="one"><ul><img src="'+data[i].user.headPic+'"/></ul><span><li>小鱼</li>'+data[i].user.username+' <p class="in_time"></p></span></div></div><div class="list-a"><div class="list"><ul><img src="../img/ic_vote_statistic.png"/></ul><p>我发起了投票：<span>'+data[i].title+'</span></p><div></div></div></div><div class="know"><div class="know-a"><p>详情：<span>'+data[i].describe+'</span></p></div></div><div class="next"><div id="first"></div><div class="play" onclick="plays()"><span>投票</span></div></div>';
+					$('.main').prepend(str);
+					if (data[i].describe == null) {
+						$('.know').hide();
+					}
+					var i_votes = data[i].votes;
+					var total = 0;
+					for (var x = 0; x<i_votes.length; x++) {
+						total += i_votes[x].count;
+					}
+					for (var j = 0; j<i_votes.length; j++) {
+						var j_str = '<ul><input type="hidden" class="vote_id" value="'+i_votes[j].id+'"/><div class="banner"><span><li><img src="../img/ic_target.png"/></li><p>'+i_votes[j].content+'</p><a><img src="../img/圆.png"/></a></span></div></ul>';
+						$('#first').append(j_str);
+						if (i_votes[j].count == 0) {
+							$('.banner').eq(j).css({'background-size':'0 100%'});
+						}else{
+//							var total_x = Number((i_votes[j].count/total).toFixed(2))*100;
+//							$('.banner').eq(j).css({'background-size':total_x+'% 100%'});
+							var total_x = -(395-Number((i_votes[j].count/total).toFixed(2))*395);
+							$('.banner').eq(j).animate({'background-position-x':total_x+'px'},300);
+						}
+					}
+					fn('in_time',i,data[i].createTime);
+				};
+				
+				$('#first').on('click','ul',function(){
+					$(this).children('.banner').children('span').children('a').children('img').attr('src','../img/选中1.png');
+					$(this).siblings().children('.banner').children('span').children('a').children('img').attr('src','../img/圆.png');
+					votid = $(this).children('.vote_id').val();
+					nodeid = $(this).parents('.main_list').children('.vote1_id').val();
+				})
+				
+			},
+			error: function(xhr, error, ex){
+				console.log("网络有问题！！！");
+			}
+		});
+//$('#first').on('click','ul',function(){
+//	$(this).children('.banner').children('span').children('a').children('img').attr('src','../img/选中1.png');
+//	$(this).siblings().children('.banner').children('span').children('a').children('img').attr('src','../img/圆.png');
+//	var votid = $(this).children('.vote_id').val();
+//	var nodeid = $(this).parents('.main_list').children('.vote1_id').val();
+//})
+
+		//点击投票
+		function plays(){
+			$.ajax({
+				type:"POST",
+				url: "http://47.92.96.194:8000/community/vote",
+				data:{
+					"voteId":nodeid,
+					"nodeId":votid
+				},
+		       	crossDomain: true,
+				dataType: 'json',
+				beforeSend: function(res){
+					document.cookie = i_cookies+";path=/";
+				},
+				xhrFields:{
+		         	withCredentials: true
+		       	},
+				success: function(data) {
+					alert(data.message);
+				},
+				error: function(xhr, error, ex) {
+					console.log("网络有问题！！！");
+				}
+			});
+		}
+		//判断时间
+		function fn(is_class,num,time) {
+        var box = document.getElementsByClassName(is_class)[num];
+        var cd = new Date();
+        var crd = new Date(parseInt(time));
+        if (cd.getYear() > crd.getYear()) {
+            box.innerHTML = (cd.getYear() - crd.getYear()) + "年前";
+            return;
+        }
+        if (cd.getMonth() > crd.getMonth()) {
+            box.innerHTML = cd.getMonth() - crd.getMonth() + "月" + "前";
+            return;
+        }
+        if (cd.getDate() > crd.getDate()) {
+            box.innerHTML = cd.getDate() - crd.getDate() + "天前";
+            return;
+        }
+        if (cd.getHours() > crd.getHours()) {
+            box.innerHTML = cd.getHours() - crd.getHours() + "小时前";
+            return;
+        }
+        if (cd.getMinutes() > crd.getMinutes()) {
+            box.innerHTML = cd.getMinutes() - crd.getMinutes() + "分钟前";
+            return;
+        }
+    }
+	</script>
+</body>
+</html>

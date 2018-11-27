@@ -1,0 +1,75 @@
+<head>
+	<meta charset="UTF-8">
+	<title>申请入池</title>
+	<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../css/Apply.css"/>
+		<script src="../js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+</head>
+	<body>
+		<!--头部上半部分填充-->
+		<div class="header_up"></div>
+		<div id="header">
+			<a class="returns"><span></span></a>
+			<div class="edit">申请入池</div>
+		</div>
+		<div class="all">
+			<div class="banner">
+				<div class="banner-b">
+					<ul><img src="../img/10.png"/ class="userpic"></ul>
+					<p class="urName">
+						<span class="write e">这样就很好了啊</span><br />
+						<!--<span class="write f">评论了你的内容</span>-->						
+					</p>
+					<li class="Square"><img src="../img/右边.png"/></li>
+				</div>
+			</div>
+			<div class="enter">
+				<a class="span">
+					<li>申请加入&nbsp;<span class="group_name">匿名侃侃渔池</span></li>
+					<span class="times">上午11:20</span>					
+				</a>
+				<p class="txt">图文皮划艇匿名侃侃渔池匿名侃侃渔池匿名侃侃渔池匿名侃侃渔池匿名侃侃渔池匿名侃侃渔池匿名侃侃渔池 </p>
+			</div>
+			<div class="button">
+				<li>
+					<span class="but z">拒绝</span>
+					<span class="but z-z">已拒绝</span>
+					<span class="but y">同意</span>
+					<span class="but y-y">已同意</span>
+				</li>
+				
+			</div>
+		</div>
+		<script src="../js/Apply.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('.returns').click(function(){
+				history.go(-1);
+			})
+			$('.y').on('click',function(){
+			$('.z').css({ display:"none"})
+			$('.y').css({  display:"none"})
+			$('.y-y').css({display:"flex"})
+			});
+			$('.z').on('click',function(){
+			$('.y').css({ display:"none"})
+			$('.z').css({  display:"none"})
+			$('.z-z').css({display:"flex"})
+			});
+		</script>
+	</body>
+</html>

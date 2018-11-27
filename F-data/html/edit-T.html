@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/reset.css" />
+		<script src="../js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+</head>
+	<style>
+	#header{					
+		width: 100%;
+		height: 0.9rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	    font-size: 0.3rem;
+	    background: #FF5857;
+	    color: #FFF;
+	    position: relative;
+	    font-family: "微软雅黑";
+	} 	
+	.returns{
+		position: absolute;
+		width: 0.8rem;
+		height: 100%;
+		top: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.returns span{
+		display:block;
+		border-left: 0.03rem solid #FFFFFF;
+		border-bottom: 0.03rem solid #FFFFFF;
+		width: .22rem; 
+		height: .22rem;
+		transform: rotate(45deg);
+	}
+	/*保存*/
+	#header .save{
+		top: 45%;
+		margin-top: -0.11rem;
+		display:block;
+	    position: absolute;
+	    right: 0.3rem;			
+		font-size: .25rem;			
+	}
+
+	/*内容整体样式*/
+	#content-a{
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;	
+		align-items: center;
+	}
+	.content{
+		width: 90%;
+		height: .8rem;
+		border-bottom: 1px solid #D3D3D3;
+	}
+	.txt{
+		width: 78%;
+		height: 100%;
+		border: none;
+		outline: none;
+		font-size: .3rem;
+	}
+	.content .pic{
+		width: .5rem;
+		height: .6rem;
+		float: right;
+		display: none;
+	}
+	/*差号显示*/
+	.content .del{
+		width: .4rem;
+		height: .4rem;
+		margin-top: .22rem;
+	}
+	/*字体限制*/
+	.down{	
+		height: .3rem;
+		font-size: 0.22rem;
+		color: #808080;	
+		margin-left: 4.5rem;
+		margin-top: .1rem;
+	}
+	</style>
+	<body>
+		<!--头部上半部分填充-->
+		<div class="header_up"></div>
+		<div id="header">
+			<a class="returns"><span></span></a>
+			<div class="edit">编辑头衔</div>
+			<div class="save">保存</div>
+		</div>
+		<div id="content-a">
+			<div class="content">
+				<input type="text" value="" class="txt"  maxlength="6" placeholder="请输入头衔"/>
+				<div class="pic"><img src="../img/差号.png"/ class="del"></div>
+			</div>
+			<div class="down">不超过6个字</div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+				var i_cookies= localStorage.cookies;
+				var i_fish_id = localStorage.fish_id;
+				var i_groupId = localStorage.groupId;
+				var i_type = localStorage.type;
+				
+			} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+				var i_cookies= sessionStorage.cookies;
+				var i_fish_id = sessionStorage.fish_id;
+				var i_groupId = sessionStorage.groupId;
+				var i_type = sessionStorage.type;
+			};
+			$('.txt').bind('input propertychange', function() { 
+			 //进行相关操作 
+				var txt = $('.txt').val();
+				if (txt != '') {
+					$('.pic').css({'display':'block'})
+				}
+			});
+			$('.pic').click(function(){
+				var txt = $('.txt').val();
+				if (txt != '') {
+					$('.txt').val('');
+					$('.pic').css({'display':'none'})
+				}
+			});
+			function keep(communityId,cookies,honorIds){
+				var Otxt = $('.txt').val();
+				$.ajax({
+					type:"POST",
+					url: "http://47.92.96.194:8000/community/honors/setting",
+					data:{
+						'communityId':communityId,
+						'honorId':honorIds,
+						'content':Otxt
+					},
+					beforeSend: function(res){
+						document.cookie = cookies+";path=/";
+					},
+					xhrFields: {
+			         	withCredentials: true
+			       	},
+			       	crossDomain: true,
+					dataType: 'json',
+					success: function(data) {
+						var data = data.data;
+						if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+							localStorage.removeItem("communityId");
+						} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+							sessionStorage.removeItem("communityId");
+						};
+						window.location.href = "title.html";	
+					},
+					error: function(xhr, error, ex) {
+						console.log("网络有问题！！！");
+					}
+				});
+			};
+			$('.save').on('click',function(){
+				checkform();
+			});
+			function checkform(){
+			    if($('.txt').val().length==0){    
+			        alert('输入为空！');
+			        return false;
+			    }else{
+			    	if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+						var i_honorId = localStorage.communityId;
+					} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+						var i_honorId = sessionStorage.communityId;
+					}
+			    	keep(i_fish_id,i_cookies,i_honorId);
+			    }
+			}
+			$('.returns').on('click',function(){
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					localStorage.removeItem("communityId");
+				} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+					sessionStorage.removeItem("communityId");
+				}
+				window.location.href="title.html"
+			});
+		</script>
+	</body>
+</html>

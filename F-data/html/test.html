@@ -1,0 +1,99 @@
+<head>
+	<meta charset="UTF-8">
+	<title>验证消息</title>
+	<link rel="stylesheet" href="../css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="../css/test.css"/>
+	<script src="../js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+</head>
+	<body>
+		<div id="content">
+			<!--头部上半部分填充-->
+			<div class="header_up"></div>
+			<div id="header">
+				<a class="returns"><span></span></a>
+				<div class="edit">渔池验证消息</div>
+				<div class="save"></div>
+			</div>
+			<ul class="main">
+				
+			</ul>
+		</div>
+		<!--animate event.stopPropagation();--->
+		<script type="text/javascript">
+			//----------获取本地存储数据
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+				var i_cookies= localStorage.cookies;
+				var i_fish_id = localStorage.fish_id;
+				var i_groupId = localStorage.groupId;
+				var i_type = localStorage.type;
+				var i_per_id = localStorage.per_id;
+				var i_member_type = sessionStorage.member_type;
+				
+			} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+				var i_cookies= sessionStorage.cookies;
+				var i_fish_id = sessionStorage.fish_id;
+				var i_groupId = sessionStorage.groupId;
+				var i_type = sessionStorage.type;
+				var i_per_id = sessionStorage.per_id;
+				var i_member_type = sessionStorage.member_type;
+			}
+			//点击同意
+			$('.btn span:eq(0)').on('click',function(){
+				$('.btn span:eq(0)').animate({opacity:0},300,function(){
+					$(this).css({display:"none"})
+					$('.btn span:eq(1)').css({display:"flex"})
+				})
+				return false;
+			});
+			
+			$(function(){
+				$.ajax({
+					type:"GET",
+					url: "http://47.92.96.194:8000/community/message/list/"+i_fish_id+"?pageNum="+1,
+			       	crossDomain: true,
+					dataType: 'json',
+					beforeSend: function(res){
+						document.cookie = i_cookies+";path=/";
+					},
+					xhrFields:{
+			         	withCredentials: true
+			       	},
+					success: function(data) {
+						if(data.code != 1000){
+							return;
+						}else{
+							var data = data.data;
+							for(var i = 0; i<data.length; i++){
+								var str = '<div class="banner"><input type="hidden" class="member_id" value="'+data[i].id+'" /><div class="banner-b"><ul class="Head"><img src="'+data[i].userHeadPic+'"/></ul><div class="group_info"><p><span>'+data[i].userName+'</span></p><span>申请加入'+data[i].communityName+'</span><a>'+data[i].content+'</a></div>';
+								
+								if (data[i].status == 0) {
+									var i_str = str+'<div class="block btn"><span>同 意</span><span>已同意</span></div></div></div>'
+								}else if (data[i].status == 1) {
+									var i_str = str+'<div class="block btn"><span>已同意</span></div></div></div>'
+								}else if (data[i].status == 2) {
+									var i_str = str+'<div class="block btn"><span>已同意</span></div></div></div>'
+								}
+								$('.main').append(i_str);
+								if (data[i].content == null) {
+									$('.group_info>a').hide();
+								}
+							};
+							$('.banner').click(function(){
+								var urlId = $(this).children('.member_id').val();
+								window.location.href = 'Apply.html?a='+urlId;
+							})
+						}
+					},
+					error: function(xhr, error, ex) {
+						console.log("网络有问题！！！");
+					}
+				});
+			});
+			
+			$('.returns').click(function(){
+				history.go(-1);
+			})
+		</script>
+	</body>
+</html>

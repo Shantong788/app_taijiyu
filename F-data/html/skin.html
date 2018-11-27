@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>个性换肤</title>
+	<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/reset.css" />
+		<link rel="stylesheet" href="../css/skin.css" />
+		<link rel="stylesheet" type="text/css" href=""/>
+		<script src="../js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+</head>
+	<body>
+		<div class="content">
+			<div class="header_up"></div>
+			<header>
+				<a class="returns"><span></span></a>
+				<p>个性换肤</p>
+			</header>
+			<div class="main">
+				<div class="list-a">
+					<div class="all-a">
+						<input type="hidden" name="" id="" value="1" />
+						<li class="you">
+							<ul><img src="../img/选中.png"/></ul>
+							<img src="../img/custombackground_1.jpg"/>	
+						</li>
+						<div class="span">
+							<p class="span-one">星空银河</p>
+							<p class="span-two">免费</p>
+						</div>					
+					</div>
+					<div class="all-a">
+						<input type="hidden" name="" id="" value="2" />
+						<li class="you">
+							<ul><img src="../img/选中.png"/></ul>
+							<img src="../img/custombackground_2.jpg"/>	
+						</li>
+						<div class="span">
+							<p class="span-one">秋日童话</p>
+							<p class="span-two">免费</p>
+						</div>					
+					</div>
+					<div class="all-a">
+						<input type="hidden" name="" id="" value="3" />
+						<li class="you">
+							<ul><img src="../img/选中.png"/></ul>
+							<img src="../img/custombackground_3.jpg"/>	
+						</li>
+						<div class="span">
+							<p class="span-one">水墨人生</p>
+							<p class="span-two">免费</p>
+						</div>					
+					</div>
+					<div class="all-a">
+						<input type="hidden" name="" id="" value="4" />
+						<li class="you">
+							<ul><img src="../img/选中.png"/></ul>
+						<img src="../img/custombackground_4.jpg"/>	
+						</li>
+						<div class="span">
+							<p class="span-one">绿色心情</p>
+							<p class="span-two">免费</p>
+						</div>					
+					</div>
+					<div class="all-a">
+						<input type="hidden" name="" id="" value="5" />
+						<li class="you">
+							<ul><img src="../img/选中.png"/></ul>
+						<img src="../img/custombackground_5.jpg"/>	
+						</li>
+						<div class="span">
+							<p class="span-one">清新蓝色</p>
+							<p class="span-two">免费</p>
+						</div>					
+					</div>
+					<div class="all-a">
+						<input type="hidden" name="" id="" value="6" />
+						<li class="you">
+							<ul><img src="../img/选中.png"/></ul>
+						<img src="../img/custombackground_6.jpg"/>	
+						</li>
+						<div class="span">
+							<p class="span-one">可爱美女</p>
+							<p class="span-two">免费</p>
+						</div>					
+					</div>
+					<div class="all-a">
+						<input type="hidden" name="" id="" value="7" />
+						<li class="you">
+							<ul><img src="../img/选中.png"/></ul>
+						<img src="../img/custombackground_7.jpg"/>	
+						</li>
+						<div class="span">
+							<p class="span-one">帅气美女</p>
+							<p class="span-two">免费</p>
+						</div>					
+					</div>
+					<div class="all-a">
+						<input type="hidden" name="" id="" value="8" />
+						<li class="you">
+							<ul><img src="../img/选中.png"/></ul>
+						<img src="../img/custombackground_8.jpg"/>	
+						</li>
+						<div class="span">
+							<p class="span-one">梦幻花瓣</p>
+							<p class="span-two">免费</p>
+						</div>					
+					</div>
+					<div class="all-a">
+						<input type="hidden" name="" id="" value="9" />
+						<li class="you">
+							<ul><img src="../img/选中.png"/></ul>
+						<img src="../img/custombackground_9.jpg"/>	
+						</li>
+						<div class="span">
+							<p class="span-one">蔚蓝苍穹</p>
+							<p class="span-two">免费</p>
+						</div>					
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			//----------获取本地存储数据-----------
+					
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+				var i_cookies= localStorage.cookies;
+				var i_fish_id = localStorage.fish_id;
+				var i_groupId = localStorage.groupId;
+				var i_type = localStorage.type;
+				var i_per_id = localStorage.per_id;
+				
+			} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+				var i_cookies= sessionStorage.cookies;
+				var i_fish_id = sessionStorage.fish_id;
+				var i_groupId = sessionStorage.groupId;
+				var i_type = sessionStorage.type;
+				var i_per_id = sessionStorage.per_id;
+			}
+			$(function(){
+				$('.all-a').on('click',function(){
+					$(this).siblings().children('.you').children('ul').children('img').hide();
+					var imgsid = $(this).children('input').val();
+					
+					$(this).children('.you').children('ul').children('img').toggle();
+					$.ajax({
+						type:"POST",
+						url: "http://47.92.96.194:8000/community/background/set",
+				       	crossDomain: true,
+						data:{
+							'communityId':i_fish_id,
+							'imgId':imgsid
+						},
+						dataType: 'json',
+						beforeSend: function(res){
+							document.cookie = i_cookies+";path=/";
+						},
+						xhrFields:{
+				         	withCredentials: true
+				       	},
+						success: function(data) {
+							history.back(-1);
+							var dat = data.data;
+						},
+						error: function(xhr, error, ex) {
+							console.log("网络有问题！！！");
+						}
+					});
+				})
+			})
+				$('.save').on('click',function(){
+				window.location.href="F-data.html"
+			});
+			$('.returns').click(function(){
+				history.back(-1);
+			})
+			
+		</script>
+	</body>
+</html>

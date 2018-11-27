@@ -1,0 +1,230 @@
+html,body{
+			width: 100%;
+			height: 100%;
+		}
+		.content{
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items:center;
+			font-family: "微软雅黑";
+		}
+		/*=============头部==========*/
+		header{
+			width: 100%;
+			height: 0.9rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		    font-size: 0.3rem;
+		    background: #FF5857;
+		    color: #FFF;
+		    position: relative;
+		
+		} 
+		/*返回上一层符号*/
+		.returns{
+			position: absolute;
+			width: 0.8rem;
+			height: 100%;
+			top: 0;
+			left: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.returns span{
+			display:block;
+			border-left: 0.03rem solid #FFFFFF;
+			border-bottom: 0.03rem solid #FFFFFF;
+			width: .22rem; 
+			height: .22rem;
+			transform: rotate(45deg);
+		}
+	 	.save{
+			top: 45%;
+			margin-top: -0.11rem;
+			display:block;
+		    position: absolute;
+		    right: 0.3rem;			
+			font-size: .25rem;			
+		}
+		header .save img{
+			width: .4rem;
+			height: .4rem;
+			/*display: none;*/
+		}
+		/*==============鱼群基本信息==========*/
+		.main{
+			width: 100%;
+			flex: 1;
+			overflow-y: auto;
+		}
+		.main>ul{
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+		.main>ul>li{
+			border-radius: 0.08rem;
+			margin-top: .3rem;
+			width: 90%;
+			height: 2.2rem;
+		}
+		.main>ul>li>img{
+			width: 100%;
+			height: 100%;
+			border-radius: 0.08rem;
+		}
+		.box{
+			width: 100%;
+			height: 1.2rem;
+			display: flex;
+			justify-content: center;
+		}
+		.one{
+			width: 95%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+		}
+		.one>ul{
+			width: .88rem;
+			height: .88rem;
+			
+		}
+		.one>ul>img{
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+		}
+		.one>span{
+			width: 40%;
+			height: 60%;
+			font-size: .22rem;
+			margin-left: .1rem;
+			float: left;
+		}
+		.one>span>li{
+			height: .3rem;
+			width:25% ;
+			border-radius: 0.07rem;
+			background: #41abdf;
+			color: #FFFFFF;
+			font-size: .2rem;
+			margin-right: .1rem;
+			float: left;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.one>span>p{
+			color: #696969;
+			font-size: .2rem;
+			margin-top: .2rem;
+		}
+		.list-a{
+			display: flex;
+			justify-content: center;
+		}
+		.list{
+			width: 95%;
+			height:.5rem;
+			display: flex;
+			align-items: center;
+		}
+		.list>ul{
+			width: .35rem;
+			height: .35rem;
+			
+		}
+		.list>ul>img{
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+		}
+		.list>p{
+			width: 100%;
+			margin-left: .1rem;
+			font-size: .22rem;
+		}
+		.know-a{
+			margin-bottom: .15rem;
+			display: flex;
+			justify-content: center;
+		}
+		.know-a>p{
+			width: 95%;
+			font-size: .22rem;
+		}
+		#first{
+			margin: 0.2rem 0;
+		}
+		#first>ul{
+			margin-bottom:0.05rem;
+			width: 100%;
+			height: .9rem;
+			background: #FFFFFF;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-bottom: solid #DCDCDC 1px;
+		}
+		.banner>span>li{
+			width: 9%;
+			height: 80%;
+			display: flex;
+			align-items: center;
+		}
+		.banner>span>li>img{
+			margin-left: 0.07rem;
+			width: .33rem;
+			height: .33rem;
+		}
+		.banner>span{
+			width: 97%;
+			height:90%;
+			font-size: .24rem;
+			display: flex;
+			align-items: center;
+		}
+		.banner>span>a{
+			width:.33rem;
+			height:.3rem;
+			border-radius: 50%;
+		}
+		.banner>span>a>img{
+			width:100%;
+			height:100%;
+		}
+		.banner>span>p{
+			width: 100%;
+		}
+		.banner{
+			width: 95%;
+			height: 100%;
+			background: url(../img/speen.png) no-repeat left;
+			background-size: 100% 100%;
+			background-position-x: -395px;
+			position: relative;
+		}
+		.play{
+			width: 100%;
+			height: .9rem;
+			display: flex;
+			justify-content: center;
+			border-bottom: .2rem solid#F1F1F1;
+		}
+		.play>span{
+			width: 94.5%;
+			height: .7rem;
+			border-radius:.1rem;
+			border: solid #FF5857 1px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: .24rem;
+		}
+		
+		

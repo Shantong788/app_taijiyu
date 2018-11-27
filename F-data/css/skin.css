@@ -1,0 +1,108 @@
+	@charset "utf-8";
+	
+	html,body{
+		width: 100%;
+		height: 100%;
+	}
+	.content{
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items:center;
+	}
+	/*=============头部==========*/
+	header{
+		width: 100%;
+		height: 0.9rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	    font-size: 0.3rem;
+	    background: #FF5857;
+	    color: #FFF;
+	    position: relative;
+	} 
+	/*返回上一层符号*/
+	.returns{
+		position: absolute;
+		width: 0.8rem;
+		height: 100%;
+		top: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.returns span{
+		display:block;
+		border-left: 0.03rem solid #FFFFFF;
+		border-bottom: 0.03rem solid #FFFFFF;
+		width: .22rem; 
+		height: .22rem;
+		transform: rotate(45deg);
+	}
+	.save{
+		top: 45%;
+		margin-top: -0.11rem;
+		display:block;
+	    position: absolute;
+	    right: 0.3rem;			
+		font-size: .25rem;			
+	}
+	.main{
+		width: 100%;
+		flex: 1;
+		overflow-y: auto;
+	}
+	.list-a{
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+	}
+	.all-a{
+		margin-top: .2rem;
+		width: 31%;
+		height: 100%;
+		margin-left: .1rem;
+	}
+	.all-a>li{
+		width: 100%;
+		height: 3.1rem;
+		background:#F1F1F1;
+		position:relative;
+		
+	}
+	.all-a>li img{
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: flex-end;
+	}
+	.all-a>li>ul{
+		position:absolute;
+		bottom: 22%;
+		right: 30%;
+	}
+	.all-a>li>ul>img{
+		height: .45rem;
+		width: .45rem;
+		display: none;
+		position:absolute;
+		z-index: 0;
+	}
+	.span {
+		height: 1rem;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;	
+	}
+	.span-one{
+		font-size: .22rem;
+	}
+	.span-two{
+		font-size: .19rem;
+		color: #808080;
+		margin-top: 0.05rem;
+	}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>设置</title>
+	<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/reset.css" />
+		<link rel="stylesheet" href="../css/set_king.css" />
+		<link rel="stylesheet" type="text/css" href=""/>
+		<script src="../js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/adaptation.js" type="text/javascript" charset="utf-8"></script>
+</head>
+	<body>
+		<div id="aways">
+			<!--头部上半部分填充-->
+			<div class="header_up"></div>
+			<div id="header">
+				<a class="returns"><span></span></a>
+				<div id="edit"></div>
+			</div>
+			<ul class="group_firend">
+				
+			</ul>
+			<div id="every">
+				<div class="banner">
+					<div class="build">
+						<div class="build-a">
+							<p></p><br />
+							<li>
+								<span class="none">取消</span>	
+								<a class="yes">确定</a>	
+							</li>			
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('.returns').on('click',function(){
+				window.location.href= 'F-data.html';
+			});
+			var title = window.location.href.split('=');
+			if (title[1] == 1) {
+				$('#edit').html('设置渔王');
+			}else if (title[1] == 2) {
+				$('#edit').html('设置渔后');
+			};
+			if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+				var i_cookies= localStorage.cookies;
+				var i_fish_id = localStorage.fish_id;
+				var i_groupId = localStorage.groupId;
+				var i_type = localStorage.type;
+				var i_per_id = localStorage.per_id;
+//				localStorage.setItem('i_num_time',1);
+				
+			} else if (/(Android)/i.test(navigator.userAgent)) { //判断Android
+				var i_cookies= sessionStorage.cookies;
+				var i_fish_id = sessionStorage.fish_id;
+				var i_groupId = sessionStorage.groupId;
+				var i_type = sessionStorage.type;
+				var i_per_id = sessionStorage.per_id;
+			};
+			var i_id;
+			function Ajax(url){
+				$.ajax({
+					type:"POST",
+					url: "http://47.92.96.194:8000/community/"+url+"/set",
+					data:{
+						'communityId':i_fish_id,
+						'userId':i_id
+					},
+					beforeSend: function(res){
+						document.cookie = i_cookies+";path=/";
+					},
+					xhrFields: {
+			         	withCredentials: true
+			       	},
+			       	crossDomain: true,
+					dataType: 'json',
+					success: function(data) {
+						window.location.href= 'F-data.html';
+					},
+					error: function(xhr, error, ex) {
+						console.log("网络有问题！！！");
+					}
+				});
+			}
+			$('.none').on('click',function(){
+				$('#every').css({'display':'none'});
+			})
+			$('.yes').on('click',function(){
+				if (title[1] == 1) {
+					Ajax('king');
+				}else if (title[1] == 2) {
+					Ajax('queen');
+				}
+			});
+				$.ajax({
+					type:"POST",
+					url: "http://47.92.96.194:8000/friends/groupMembers",
+					data:{
+						'groupId':i_groupId
+					},
+					beforeSend: function(res){
+						document.cookie = i_cookies+";path=/";
+					},
+					xhrFields: {
+			         	withCredentials: true
+			       	},
+			       	crossDomain: true,
+					dataType: 'json',
+					success: function(data) {
+						var data = data.data;
+						for (var i = 0; i<data.length; i++) {
+							$('.group_firend').append('<div class="member"><div class="box"><div class="portrait"><img src="'+data[i].headPic+'"/></div><div class="name">'+data[i].nickname+'</div><input type="hidden" class="member_id" value="'+ data[i].id+'"/></div></div>')
+						};
+						$('.box').click(function(){
+							var i_name = $(this).children('.name').html();
+							i_id = $(this).children('.member_id').val();
+							$('#every').css({'display':'flex'});
+							if(title[1] == 1){
+								$('.build-a>p').html('确定要将【'+i_name+'】添加成渔王吗？');
+							}else {
+								$('.build-a>p').html("确定要将【"+i_name+"】添加成渔后吗？");
+							}
+						});
+					},
+					error: function(xhr, error, ex){
+						console.log("网络有问题！！！");
+					}
+				});	
+		</script>
+	</body>
+</html>
